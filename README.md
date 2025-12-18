@@ -2,7 +2,7 @@
 
 ## 📖 Description
 
-A minimal **Flask Hello World** application that returns **"Hello, World!"** when accessed.
+A **Flask Hello World** application that returns **"Hello, World!"** when accessed.
 
 This branch represents **Stage 1** of a DevOps project and focuses solely on:
 
@@ -73,8 +73,3 @@ docker push <your-dockerhub-username>/flask-app:latest
 * Replace `<your-dockerhub-username>` with your Docker Hub username
 
 ---
-
-## 🧭 Project Stages
-
-* **Stage 1 (this branch):** Dockerized Flask application
-* **Stage 2:** Kubernetes deployment (separate branch)
