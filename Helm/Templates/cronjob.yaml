@@ -1,0 +1,64 @@
+{{- if .Values.cronjobs.enabled }}
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-health-check
+spec:
+  schedule: {{ .Values.cronjobs.healthCheck.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: health-checker
+              image: {{ .Values.cronjobs.healthCheck.image }}
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  response=$(curl -s -o /dev/null -w "%{http_code}" {{ .Values.cronjobs.healthCheck.serviceUrl }})
+                  [ "$response" = "200" ] || exit 1
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-metrics-report
+spec:
+  schedule: {{ .Values.cronjobs.metricsReport.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: metrics-reporter
+              image: {{ .Values.cronjobs.metricsReport.image }}
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  curl -v {{ .Values.cronjobs.metricsReport.serviceUrl }}
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-log-rotation
+spec:
+  schedule: {{ .Values.cronjobs.logRotation.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: log-rotator
+              image: {{ .Values.cronjobs.logRotation.image }}
+              command:
+                - /bin/sh
+                - -c
+                - echo "Simulated log rotation"
+          restartPolicy: OnFailure
+
+{{- end }}
+

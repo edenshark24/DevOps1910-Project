@@ -1,0 +1,45 @@
+app:
+  name: flask-app
+
+image:
+  repository: eden2404/flask-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 3
+
+containerPort: 5000
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 5000
+  nodePort: 30080
+
+env:
+  flaskEnv: production
+  logLevel: info
+
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilization: 70
+
+cronjobs:
+  enabled: true
+
+  healthCheck:
+    schedule: "*/5 * * * *"
+    image: curlimages/curl:latest
+    serviceUrl: http://flask-app-service
+
+  metricsReport:
+    schedule: "0 * * * *"
+    image: curlimages/curl:latest
+    serviceUrl: http://flask-app-service
+
+  logRotation:
+    schedule: "0 0 * * 0"
+    image: busybox
+
