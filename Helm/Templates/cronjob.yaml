@@ -1,88 +1,64 @@
+{{- if .Values.cronjobs.enabled }}
+
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: flask-health-check
-  labels:
-    app: flask-app
+  name: {{ .Release.Name }}-health-check
 spec:
-  schedule: "*/5 * * * *"  # Run every 5 minutes
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 1
+  schedule: {{ .Values.cronjobs.healthCheck.schedule | quote }}
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: health-checker
-            image: curlimages/curl:latest
-            command:
-            - /bin/sh
-            - -c
-            - |
-              echo "Running health check on Flask app..."
-              response=$(curl -s -o /dev/null -w "%{http_code}" http://flask-app-service/)
-              if [ "$response" = "200" ]; then
-                echo "✓ Health check passed! Status: $response"
-                echo "Response body:"
-                curl -s http://flask-app-service/
-              else
-                echo "✗ Health check failed! Status: $response"
-                exit 1
-              fi
+            - name: health-checker
+              image: {{ .Values.cronjobs.healthCheck.image }}
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  response=$(curl -s -o /dev/null -w "%{http_code}" {{ .Values.cronjobs.healthCheck.serviceUrl }})
+                  [ "$response" = "200" ] || exit 1
           restartPolicy: OnFailure
 ---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: flask-metrics-report
-  labels:
-    app: flask-app
+  name: {{ .Release.Name }}-metrics-report
 spec:
-  schedule: "0 * * * *"  # Run every hour
-  successfulJobsHistoryLimit: 2
-  failedJobsHistoryLimit: 1
+  schedule: {{ .Values.cronjobs.metricsReport.schedule | quote }}
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: metrics-reporter
-            image: curlimages/curl:latest
-            command:
-            - /bin/sh
-            - -c
-            - |
-              echo "=== Flask App Metrics Report ==="
-              echo "Timestamp: $(date)"
-              echo "Testing app endpoint..."
-              curl -v http://flask-app-service/
-              echo ""
-              echo "Report completed!"
+            - name: metrics-reporter
+              image: {{ .Values.cronjobs.metricsReport.image }}
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  curl -v {{ .Values.cronjobs.metricsReport.serviceUrl }}
           restartPolicy: OnFailure
 ---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: flask-log-rotation
-  labels:
-    app: flask-app
+  name: {{ .Release.Name }}-log-rotation
 spec:
-  schedule: "0 0 * * 0"  # Run weekly on Sunday at midnight
-  successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 1
+  schedule: {{ .Values.cronjobs.logRotation.schedule | quote }}
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: log-rotator
-            image: busybox
-            command:
-            - /bin/sh
-            - -c
-            - |
-              echo "Performing log rotation simulation..."
-              echo "Current date: $(date)"
-              echo "In production, this would rotate/archive old logs"
-              echo "Log rotation completed!"
+            - name: log-rotator
+              image: {{ .Values.cronjobs.logRotation.image }}
+              command:
+                - /bin/sh
+                - -c
+                - echo "Simulated log rotation"
           restartPolicy: OnFailure
+
+{{- end }}
+

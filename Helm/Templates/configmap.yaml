@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: flask-config
+  name: {{ .Release.Name }}-config
   labels:
-    app: flask-app
+    app: {{ .Values.app.name }}
 data:
-  flask_env: "production"
-  log_level: "info"
+  FLASK_ENV: {{ .Values.env.flaskEnv | quote }}
+  LOG_LEVEL: {{ .Values.env.logLevel | quote }}
+
