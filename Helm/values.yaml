@@ -6,7 +6,7 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
-replicaCount: 4
+replicaCount: 3
 
 containerPort: 5000
 
