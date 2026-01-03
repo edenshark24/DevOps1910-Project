@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  flask-app:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-01-03T15:29:46.1076032+02:00"
+    description: A production-ready Flask application deployed on Kubernetes
+    digest: dc0eee4175a209be35bdb1027a6a6f2edfeab1cafb331a91ba02a62805178798
+    name: flask-app
+    type: application
+    urls:
+    - flask-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-01-03T15:29:46.1065169+02:00"

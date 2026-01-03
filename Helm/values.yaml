@@ -10,6 +10,14 @@ replicaCount: 3
 
 containerPort: 5000
 
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
 service:
   type: NodePort
   port: 80
