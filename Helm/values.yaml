@@ -30,7 +30,7 @@ env:
 
 hpa:
   enabled: true
-  minReplicas: 4
+  minReplicas: 5
   maxReplicas: 12
   targetCPUUtilization: 70
 
