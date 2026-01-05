@@ -1,0 +1,38 @@
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Build') {
+      steps {
+        sh 'docker build -t eden2404/flask-app:${BUILD_NUMBER} .'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh '''
+          docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:${BUILD_NUMBER}
+          sleep 5
+          curl -f http://localhost:5000
+        '''
+      }
+      post {
+        always {
+          sh 'docker rm -f test-flask || true'
+        }
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh '''
+          helm upgrade --install flask-app ./Helm \
+            --set image.tag=${BUILD_NUMBER}
+        '''
+      }
+    }
+
+  }
+}
+
