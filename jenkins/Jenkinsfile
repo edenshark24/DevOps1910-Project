@@ -5,14 +5,16 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'docker build -t eden2404/flask-app:${BUILD_NUMBER} .'
+        bat 'docker build -t eden2404/flask-app:%BUILD_NUMBER%
+ .'
       }
     }
 
     stage('Test') {
       steps {
        bat '''
-          docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:${BUILD_NUMBER}
+          docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:%BUILD_NUMBER%
+
           sleep 5
           curl -f http://localhost:5000
         '''
@@ -28,7 +30,8 @@ pipeline {
       steps {
         bat '''
           helm upgrade --install flask-app ./Helm \
-            --set image.tag=${BUILD_NUMBER}
+            --set image.tag=%BUILD_NUMBER%
+
         '''
       }
     }
