@@ -1,12 +1,13 @@
 pipeline {
   agent any
 
-  sstage('Build') {
-  steps {
-    bat 'docker build -t eden2404/flask-app:%BUILD_NUMBER% -f Docker\\Dockerfile Docker'
-  }
-}
+  stages {
 
+    stage('Build') {
+      steps {
+        bat 'docker build -t eden2404/flask-app:%BUILD_NUMBER% -f Docker\\Dockerfile Docker'
+      }
+    }
 
     stage('Test') {
       steps {
