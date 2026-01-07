@@ -10,22 +10,14 @@ pipeline {
     }
 
     stage('Test') {
-  steps {
-    bat '''
-      docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:%BUILD_NUMBER%
+      steps {
+        bat '''
+          docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:%BUILD_NUMBER%
 
-      ping 127.0.0.1 -n 6 > nul
+          ping 127.0.0.1 -n 6 > nul
 
-      curl http://localhost:5000 || exit /b 1
-    '''
-  }
-  post {
-    always {
-      bat 'docker rm -f test-flask'
-    }
-  }
-}
-
+          curl http://localhost:5000 || exit /b 1
+        '''
       }
       post {
         always {
