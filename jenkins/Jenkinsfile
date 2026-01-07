@@ -1,38 +1,35 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-
-    stage('Build') {
-      steps {
-        bat 'docker build -t eden2404/flask-app:%BUILD_NUMBER% -f Docker\\Dockerfile Docker'
-      }
-    }
-
-    stage('Test') {
-      steps {
-        bat '''
-          docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:%BUILD_NUMBER%
-
-          ping 127.0.0.1 -n 6 > nul
-
-          curl http://localhost:5000 || exit /b 1
-        '''
-      }
-      post {
-        always {
-          bat 'docker rm -f test-flask'
+    stages {
+        stage('Build') {
+            steps {
+                bat "docker build -t eden2404/flask-app:${env.BUILD_NUMBER} -f Docker\\Dockerfile Docker"
+            }
         }
-      }
-    }
 
-    stage('Deploy') {
-      steps {
-        bat '''
-          helm upgrade --install flask-app ./Helm --set image.tag=%BUILD_NUMBER%
-        '''
-      }
-    }
+        stage('Test') {
+            steps {
+                bat """
+                    docker run -d -p 5000:5000 --name test-flask eden2404/flask-app:${env.BUILD_NUMBER}
+                    timeout /t 10 /nobreak > nul
+                    curl http://localhost:5000 || exit /b 1
+                """
+            }
+            post {
+                always {
+                    bat 'docker rm -f test-flask'
+                }
+            }
+        }
 
-  }
+        stage('Deploy') {
+            steps {
+                // This block securely binds your uploaded file to the KUBECONFIG variable
+                withCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
+                    bat "helm upgrade --install flask-app ./Helm --set image.tag=${env.BUILD_NUMBER}"
+                }
+            }
+        }
+    }
 }
