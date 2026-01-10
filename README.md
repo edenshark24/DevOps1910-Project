@@ -4,7 +4,6 @@
 
 This branch represents **Stage 3** of the Flask Hello World DevOps project. The application delivery is now **fully automated** using a **Jenkins CI/CD Pipeline** and managed via a **versioned Helm Chart registry**.
 
-> ⚠️ For **manual Kubernetes instructions**, refer to **Stage 2**.
 
 ---
 
@@ -12,7 +11,7 @@ This branch represents **Stage 3** of the Flask Hello World DevOps project. The 
 
 * Jenkins installed with **Docker** and **Helm** access
 * Kubernetes cluster (**Minikube** or **k3s**)
-* Docker Hub account (**eden2404**)
+* Docker Hub account 
 * GitHub Pages enabled for Helm repository hosting
 
 ---
