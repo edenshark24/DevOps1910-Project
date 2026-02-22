@@ -1,9 +1,9 @@
 🚀 Flask DevOps Project – Complete Implementation
 📖 Description
 
-A Flask-based application delivered through a complete DevOps workflow — from containerization to Kubernetes orchestration and automated CI/CD deployment.
+A Flask-based application delivered through a complete DevOps workflow — from Docker containerization, through Kubernetes orchestration, to CI/CD automation with Helm.
 
-This repository represents the full DevOps implementation and is structured into dedicated branches, each reflecting a specific stage of infrastructure maturity:
+This repository represents the full DevOps implementation and is structured into dedicated branches, each reflecting a stage of infrastructure maturity:
 
 Phase 1 – Docker containerization
 
@@ -34,7 +34,7 @@ Horizontal Pod Autoscaler (HPA)
 
 Liveness & readiness probes
 
-CronJobs for scheduled tasks
+CronJobs for scheduled operations
 
 🟣 Phase 3 – CI/CD & Helm (phase-3)
 
@@ -47,6 +47,14 @@ Versioned Docker image builds
 Deployment via Helm
 
 Rolling updates on Kubernetes
+
+✅ Requirements
+
+Docker & Docker Compose (Phase 1)
+
+Kubernetes cluster (Minikube or k3s) (Phase 2)
+
+Jenkins & Helm (Phase 3)
 
 🛠 Technologies Used
 
