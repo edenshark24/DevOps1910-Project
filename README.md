@@ -1,61 +1,57 @@
-🚀 Flask DevOps Project
-Overview
+🚀 Flask DevOps Project – Complete Implementation
+📖 Description
 
-This project demonstrates a complete DevOps workflow for a containerized Flask application — progressing from local containerization to Kubernetes orchestration and automated CI/CD deployment.
+This repository demonstrates a complete DevOps workflow for a Flask application — evolving from containerization to Kubernetes orchestration and fully automated CI/CD deployment.
 
-Each phase is implemented in a dedicated branch to reflect real-world infrastructure evolution.
+Each stage is implemented in a dedicated branch to reflect real-world infrastructure progression.
 
-Project Structure
-Phase 1 – Docker (phase-1)
+🧭 Project Stages
+🟢 Phase 1 – Docker (Branch: phase-1)
 
 Containerized Flask application
 
 Docker image build and push workflow
 
-Local execution with Docker Compose
+Local execution using Docker Compose
 
-Phase 2 – Kubernetes (phase-2)
+Focus: Application containerization and reproducible builds.
 
-Deployment and Service configuration
+🔵 Phase 2 – Kubernetes (Branch: phase-2)
 
-ConfigMap for environment management
+Kubernetes Deployment & Service
+
+ConfigMap-based configuration
 
 Horizontal Pod Autoscaler (HPA)
 
-Liveness and readiness probes
+Liveness & readiness probes
 
-CronJobs for scheduled tasks
+CronJobs for scheduled operations
 
-Phase 3 – CI/CD & Helm (phase-3)
+Focus: Orchestration, scalability, and operational reliability.
+
+🟣 Phase 3 – CI/CD & Helm (Branch: phase-3)
 
 CI/CD pipeline using Jenkins
 
-Versioned Docker image builds
+Automated Docker image versioning
 
-Deployment using Helm
+Deployment via Helm
 
 Rolling updates on Kubernetes
 
-Technologies Used
+Focus: Automation, release management, and continuous delivery.
 
-Pallets Projects Flask
+🛠 Technologies Used
 
-Docker
+Backend: Pallets Projects Flask
 
-Kubernetes
+Containerization: Docker
 
-Jenkins
+Orchestration: Kubernetes
 
-Helm
+CI/CD: Jenkins
 
-GitHub
+Package Management: Helm
 
-What This Project Demonstrates
-
-Containerization best practices
-
-Kubernetes deployment and scaling
-
-CI/CD pipeline automation
-
-Version-controlled application delivery
+Version Control: GitHub
