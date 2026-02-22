@@ -1,22 +1,30 @@
 🚀 Flask DevOps Project – Complete Implementation
 📖 Description
 
-This repository demonstrates a complete DevOps workflow for a Flask application — evolving from containerization to Kubernetes orchestration and fully automated CI/CD deployment.
+A Flask-based application delivered through a complete DevOps workflow — from containerization to Kubernetes orchestration and automated CI/CD deployment.
 
-Each stage is implemented in a dedicated branch to reflect real-world infrastructure progression.
+This repository represents the full DevOps implementation and is structured into dedicated branches, each reflecting a specific stage of infrastructure maturity:
+
+Phase 1 – Docker containerization
+
+Phase 2 – Kubernetes deployment & scaling
+
+Phase 3 – CI/CD pipeline & Helm-based releases
 
 🧭 Project Stages
-🟢 Phase 1 – Docker (Branch: phase-1)
+🟢 Phase 1 – Docker (phase-1)
 
-Containerized Flask application
+Focuses on:
 
-Docker image build and push workflow
+Building a Docker image
+
+Running the application in a container
 
 Local execution using Docker Compose
 
-Focus: Application containerization and reproducible builds.
+🔵 Phase 2 – Kubernetes (phase-2)
 
-🔵 Phase 2 – Kubernetes (Branch: phase-2)
+Introduces:
 
 Kubernetes Deployment & Service
 
@@ -26,32 +34,30 @@ Horizontal Pod Autoscaler (HPA)
 
 Liveness & readiness probes
 
-CronJobs for scheduled operations
+CronJobs for scheduled tasks
 
-Focus: Orchestration, scalability, and operational reliability.
+🟣 Phase 3 – CI/CD & Helm (phase-3)
 
-🟣 Phase 3 – CI/CD & Helm (Branch: phase-3)
+Implements:
 
 CI/CD pipeline using Jenkins
 
-Automated Docker image versioning
+Versioned Docker image builds
 
 Deployment via Helm
 
 Rolling updates on Kubernetes
 
-Focus: Automation, release management, and continuous delivery.
-
 🛠 Technologies Used
 
-Backend: Pallets Projects Flask
+Pallets Projects Flask
 
-Containerization: Docker
+Docker
 
-Orchestration: Kubernetes
+Kubernetes
 
-CI/CD: Jenkins
+Jenkins
 
-Package Management: Helm
+Helm
 
-Version Control: GitHub
+GitHub
