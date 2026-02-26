@@ -1,71 +1,61 @@
-🚀 Flask DevOps Project – Complete Implementation
-📖 Description
+# 🚀 Flask DevOps Project – Complete Implementation
 
-A Flask-based application delivered through a complete DevOps workflow — from Docker containerization, through Kubernetes orchestration, to CI/CD automation with Helm.
+## 📖 Description
 
-This repository represents the full DevOps implementation and is structured into dedicated branches, each reflecting a stage of infrastructure maturity:
+A **Flask-based application** delivered through a complete DevOps workflow — from **Docker containerization**, through **Kubernetes orchestration**, to full **CI/CD automation with Helm**.
 
-Phase 1 – Docker containerization
+This repository represents the **full DevOps implementation** and is structured into dedicated branches, each reflecting a stage of infrastructure maturity.
 
-Phase 2 – Kubernetes deployment & scaling
+---
 
-Phase 3 – CI/CD pipeline & Helm-based releases
+## 🧭 Project Stages
 
-🧭 Project Stages
-🟢 Phase 1 – Docker (phase-1)
+### 🟢 Phase 1 – Docker (`phase-1`)
 
 Focuses on:
 
-Building a Docker image
+* Building a Docker image
+* Running the application in a container
+* Local execution using Docker Compose
 
-Running the application in a container
+---
 
-Local execution using Docker Compose
-
-🔵 Phase 2 – Kubernetes (phase-2)
+### 🔵 Phase 2 – Kubernetes (`phase-2`)
 
 Introduces:
 
-Kubernetes Deployment & Service
+* Kubernetes Deployment & Service
+* ConfigMap-based configuration
+* Horizontal Pod Autoscaler (HPA)
+* Liveness & readiness probes
+* CronJobs for scheduled operations
 
-ConfigMap-based configuration
+---
 
-Horizontal Pod Autoscaler (HPA)
-
-Liveness & readiness probes
-
-CronJobs for scheduled operations
-
-🟣 Phase 3 – CI/CD & Helm (phase-3)
+### 🟣 Phase 3 – CI/CD & Helm (`phase-3`)
 
 Implements:
 
-CI/CD pipeline using Jenkins
+* CI/CD pipeline using Jenkins
+* Versioned Docker image builds
+* Deployment via Helm
+* Rolling updates on Kubernetes
 
-Versioned Docker image builds
+---
 
-Deployment via Helm
+## ✅ Requirements
 
-Rolling updates on Kubernetes
+* Docker & Docker Compose (Phase 1)
+* Kubernetes cluster (Minikube or k3s) (Phase 2)
+* Jenkins & Helm (Phase 3)
 
-✅ Requirements
+---
 
-Docker & Docker Compose (Phase 1)
+## 🛠 Technologies Used
 
-Kubernetes cluster (Minikube or k3s) (Phase 2)
-
-Jenkins & Helm (Phase 3)
-
-🛠 Technologies Used
-
-Pallets Projects Flask
-
-Docker
-
-Kubernetes
-
-Jenkins
-
-Helm
-
-GitHub
+* Flask
+* Docker
+* Kubernetes
+* Jenkins
+* Helm
+* GitHub
