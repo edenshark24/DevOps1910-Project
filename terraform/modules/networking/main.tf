@@ -32,10 +32,9 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name        = "${var.project_name}-public-subnet-${count.index + 1}"
-    Environment = var.environment
-    ManagedBy   = "Terraform"
-    # Required for EKS to discover public subnets for ALB
+    Name                     = "${var.project_name}-public-subnet-${count.index + 1}"
+    Environment              = var.environment
+    ManagedBy                = "Terraform"
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -48,10 +47,9 @@ resource "aws_subnet" "private" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name        = "${var.project_name}-private-subnet-${count.index + 1}"
-    Environment = var.environment
-    ManagedBy   = "Terraform"
-    # Required for EKS to discover private subnets for internal load balancers
+    Name                              = "${var.project_name}-private-subnet-${count.index + 1}"
+    Environment                       = var.environment
+    ManagedBy                         = "Terraform"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
@@ -67,7 +65,7 @@ resource "aws_eip" "nat" {
   }
 }
 
-# NAT Gateway (lives in first public subnet)
+# NAT Gateway
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
