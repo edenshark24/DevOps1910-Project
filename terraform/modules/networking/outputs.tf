@@ -1,5 +1,5 @@
 output "vpc_id" {
-  description = "VPC ID"
+  description = "Main VPC ID"
   value       = aws_vpc.main.id
 }
 
