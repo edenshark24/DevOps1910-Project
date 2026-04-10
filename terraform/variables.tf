@@ -41,3 +41,7 @@ variable "allowed_ssh_cidrs" {
   description = "List of CIDR blocks allowed to SSH into Jenkins"
   type        = list(string)
 
+ variable "key_name" {
+  description = "AWS Key Pair name for SSH access"
+  type        = string
+}
