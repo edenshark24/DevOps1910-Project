@@ -29,3 +29,17 @@ module "networking" {
   jenkins_sg_id = module.security.jenkins_sg_id
   key_name = var.key_name
 }
+
+module "rds" {
+  source = "./modules/rds"
+  project_name         = var.project_name
+  environment          = var.environment
+  rds_subnet_ids = module.networking.private_subnet_ids
+   vpc_id            = module.networking.vpc_id
+  rds_sg_id = module.security.rds_sg_id
+  db_name  = var.db_name
+  db_username = var.db_username
+  db_password = var.db_password
+}
+
+
