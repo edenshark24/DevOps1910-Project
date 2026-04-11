@@ -7,3 +7,6 @@ private_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 allowed_ssh_cidrs    = ["MY_IP/32"]
 key_name = "DevOps1910-jenkins-key"
+db_name     = "flaskdb"
+db_username = "flaskadmin"
+db_password = "DevOps1910!Secure"
