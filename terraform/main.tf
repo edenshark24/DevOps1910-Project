@@ -42,4 +42,12 @@ module "rds" {
   db_password = var.db_password
 }
 
+module "eks" {
+  source = "./modules/eks"
 
+  project_name   = var.project_name
+  environment    = var.environment
+  vpc_id         = module.networking.vpc_id
+  eks_subnet_ids = module.networking.private_subnet_ids
+  eks_sg_id      = module.security.eks_sg_id
+}
