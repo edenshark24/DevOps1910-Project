@@ -51,3 +51,10 @@ module "eks" {
   eks_subnet_ids = module.networking.private_subnet_ids
   eks_sg_id      = module.security.eks_sg_id
 }
+
+module "ecr" {
+  source = "./modules/ecr"
+
+  project_name   = var.project_name
+  environment    = var.environment
+}
