@@ -7,7 +7,7 @@ module "networking" {
   availability_zones   = var.availability_zones
   private_subnet_cidrs = var.private_subnet_cidrs
   public_subnet_cidrs  = var.public_subnet_cidrs
-
+}
 
   module "security" {
   source = "./modules/security"
@@ -28,6 +28,7 @@ module "networking" {
   jenkins_subnet_id = module.networking.private_subnet_ids[0]
   jenkins_sg_id = module.security.jenkins_sg_id
   key_name = var.key_name
+  jenkins_public_key = var.jenkins_public_key
 }
 
 module "rds" {

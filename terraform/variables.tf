@@ -40,7 +40,7 @@ variable "public_subnet_cidrs" {
 variable "allowed_ssh_cidrs" {
   description = "List of CIDR blocks allowed to SSH into Jenkins"
   type        = list(string)
-
+}
  variable "key_name" {
   description = "AWS Key Pair name for SSH access"
   type        = string
@@ -61,4 +61,9 @@ variable "db_password" {
   description = "Database master password"
   type        = string
   sensitive   = true
+}
+
+variable "jenkins_public_key" {
+  description = "SSH public key content used to grant access to the Jenkins EC2 instance (e.g. contents of your ~/.ssh/id_rsa.pub)"
+  type        = string
 }

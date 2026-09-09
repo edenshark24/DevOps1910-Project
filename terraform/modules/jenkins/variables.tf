@@ -36,4 +36,7 @@ variable "key_name" {
 }
 
 
-
+variable "jenkins_public_key" {
+  description = "SSH public key content used to grant access to the Jenkins EC2 instance"
+  type        = string
+}
