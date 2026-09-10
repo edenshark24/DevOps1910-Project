@@ -1,3 +1,11 @@
+/*
+ * Phase 3 – Local CI/CD Pipeline
+ * Runs on a local Jenkins instance (Windows agent)
+ * Registry: DockerHub
+ * Deploy target: local Kubernetes cluster (Minikube/k3s) via kubeconfig
+ * For the AWS production pipeline see: aws-pipeline/Jenkinsfile
+ */
+
 pipeline {
   agent any
 
