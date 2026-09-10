@@ -1,9 +1,17 @@
+/*
+ * Phase 4 – AWS Production CI/CD Pipeline
+ * Runs on Jenkins EC2 instance (Linux agent) provisioned by Terraform
+ * Registry: AWS ECR (private)
+ * Deploy target: EKS cluster across DEV / STAGING / PROD namespaces
+ * For the local pipeline see: jenkins/Jenkinsfile
+ */
+
 pipeline {
     agent any
     
     environment {
         AWS_REGION   = 'us-east-1'
-        ECR_REGISTRY = '<your-account-id>.dkr.ecr.us-east-1.amazonaws.com'
+        ECR_REGISTRY = "${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com"
         ECR_REPO     = 'devops1910-flask'
         IMAGE_TAG    = "${BUILD_NUMBER}"
         CLUSTER_NAME = 'DevOps1910-cluster'
