@@ -43,11 +43,25 @@ Implements:
 
 ---
 
+
+🔴 Phase 4 – AWS Cloud Infrastructure (`phase4`)
+Implements:
+
+* Full AWS infrastructure provisioned via Terraform (modular IaC)
+* VPC with public/private subnets, NAT Gateway, VPC Endpoints
+* EKS managed Kubernetes cluster across 3 availability zones
+* RDS PostgreSQL database in private subnet
+* ECR private container registry
+* Jenkins CI/CD server on EC2 with IAM Instance Profile
+* Remote Terraform state in S3 + DynamoDB locking
+* Full CI/CD pipeline: test → scan → build → push → deploy DEV/STAGING/PROD
+
 ## ✅ Requirements
 
 * Docker & Docker Compose (Phase 1)
 * Kubernetes cluster (Minikube or k3s) (Phase 2)
 * Jenkins & Helm (Phase 3)
+* AWS CLI + Terraform >= 1.0 + kubectl (Phase 4)
 
 ---
 
@@ -59,3 +73,5 @@ Implements:
 * Jenkins
 * Helm
 * GitHub
+* Terraform
+* AWS (EKS, RDS, ECR, VPC, EC2)
