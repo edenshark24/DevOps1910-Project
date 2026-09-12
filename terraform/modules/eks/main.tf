@@ -157,3 +157,33 @@ resource "aws_eks_node_group" "main" {
     ManagedBy   = "Terraform"
   }
 }
+
+# Policy 4 - CloudWatch Container Insights
+# Allows nodes to send metrics and logs to CloudWatch
+resource "aws_iam_role_policy_attachment" "eks_cloudwatch_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  role       = aws_iam_role.eks_nodes.name
+}
+
+# ============================================
+# CLOUDWATCH CONTAINER INSIGHTS ADDON
+# ============================================
+# Enables node-level monitoring:
+# → CPU, memory, disk, network per node
+# → Pod-level resource usage
+# → Cluster-level metrics
+resource "aws_eks_addon" "cloudwatch_observability" {
+  cluster_name = aws_eks_cluster.main.name
+  addon_name   = "amazon-cloudwatch-observability"
+
+  depends_on = [
+    aws_eks_node_group.main,
+    aws_iam_role_policy_attachment.eks_cloudwatch_policy
+  ]
+
+  tags = {
+    Name        = "${var.project_name}-cloudwatch-addon"
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+  }
+}
